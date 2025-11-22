@@ -1,0 +1,21 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Vite
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Env files
+.env
+.env.*
+
+# Docker
+*.pid
+
+# System
+.DS_Store
