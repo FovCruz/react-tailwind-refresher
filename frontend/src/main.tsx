@@ -1,19 +1,13 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from "react-router-dom";
+import './index.css'
+import App from './App.tsx'
 
-export default function App() {
-  return (
-    <div className="p-4">
-      <nav className="flex space-x-4 mb-6">
-        <Link to="/" className="text-blue-500 hover:underline">Home</Link>
-        <Link to="/about" className="text-blue-500 hover:underline">About</Link>
-      </nav>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </div>
-  );
-}
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
+)
