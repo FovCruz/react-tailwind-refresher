@@ -1,19 +1,17 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import { Link, Outlet } from "react-router-dom";
 
 export default function App() {
   return (
     <div className="p-4">
-      <nav className="flex space-x-4 mb-6">
-        <Link to="/" className="text-blue-500 hover:underline">Home</Link>
-        <Link to="/about" className="text-blue-500 hover:underline">About</Link>
+      <nav className="flex gap-4 mb-6">
+        <Link className="text-blue-500" to="/">Home</Link>
+        <Link className="text-green-500" to="/about">About</Link>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      {/* Aquí se mostrarán las páginas */}
+      <Outlet />
+
+      <h1 className="text-4xl font-bold mt-6">Bienvenido a tu proyecto!</h1>
     </div>
   );
 }
