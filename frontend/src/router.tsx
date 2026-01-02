@@ -4,24 +4,32 @@ import AuthLayout from "./layouts/AuthLayout";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Dashboard from "./pages/Dashboard"; // <-- importante
+import Dashboard from "./pages/Dashboard";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,   // <-- Layout con menú
+    element: <MainLayout />,
     children: [
       { path: "", element: <Home /> },
       { path: "about", element: <About /> },
-      { path: "dashboard", element: <Dashboard /> }, // <-- aquí va Dashboard
+      {
+        path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 
   {
     path: "/",
-    element: <AuthLayout />,   // <-- Layout de login/register
+    element: <AuthLayout />,
     children: [
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
