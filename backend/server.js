@@ -8,19 +8,36 @@ import authRoutes from "./routes/auth.js";
 dotenv.config();
 
 const app = express();
+
+/* =====================
+   Middlewares
+===================== */
 app.use(cors());
 app.use(express.json());
 
+/* =====================
+   Routes
+===================== */
 app.use("/api/auth", authRoutes);
 
+/* =====================
+   Config
+===================== */
 const PORT = process.env.PORT || 4000;
-const MONGO = process.env.MONGO_URI || "mongodb://mongo:27017/refresherdb";
+const MONGO_URI =
+  process.env.MONGO_URI || "mongodb://mongo:27017/refresherdb";
 
-mongoose.connect(MONGO)
+/* =====================
+   Database + Server
+===================== */
+mongoose
+  .connect(MONGO_URI)
   .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(process.env.PORT, () => 
-	console.log(`Server running on port ${PORT}`)
-);
+    console.log("✅ Connected to MongoDB");
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
   })
-  .catch(err => console.error("Mongo connection error", err));
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err);
+  });
